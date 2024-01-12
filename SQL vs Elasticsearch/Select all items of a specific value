@@ -1,0 +1,15 @@
+sql:
+SELECT * 
+FROM customers 
+WHERE id = 3
+
+elasticsearch:
+{
+  "query": {
+    "term": {
+      "id": {
+        "value": 3
+      }
+    }
+  }
+}

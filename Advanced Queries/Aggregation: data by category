@@ -1,0 +1,10 @@
+{ 
+  "size": 0,
+  "aggs": {
+    "file-type": {
+      "terms": {
+        "field": "category"
+      }
+    }
+  }
+}

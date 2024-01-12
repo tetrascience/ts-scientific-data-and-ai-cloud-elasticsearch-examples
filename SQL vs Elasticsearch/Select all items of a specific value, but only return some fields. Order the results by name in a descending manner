@@ -1,0 +1,29 @@
+sql:
+SELECT name, email 
+FROM customers
+WHERE id = 3
+ORDER BY name DESC
+
+elasticsearch:
+{ 
+  "query": {
+    "term": {
+      "id": {
+        "value": 3
+      }
+    }
+  },
+  "_source": {
+    "includes": [
+      "name",
+      "email"
+    ]
+  },
+  "sort": [
+    {
+      "name.keyword": {
+        "order": "desc"
+      }
+    }
+  ]
+}

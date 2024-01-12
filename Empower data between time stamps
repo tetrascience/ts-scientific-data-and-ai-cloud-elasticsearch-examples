@@ -1,0 +1,27 @@
+query = {
+           "size": 50,
+           "query": {
+               "bool": {
+                   "must": [
+                       {
+                           "term": { "source.type": "empower" }
+                       },
+                       {
+                           "term": { "category": "IDS" }
+                       },
+                       {
+                           "range": {
+                               "indexedAt": {
+                                  "gte": "2023-03-01T00:00:00",
+                                  "lt": "2023-03-20T00:00:00"
+                               }
+                           }
+                       }
+                   ]
+               }
+           },
+           "_source": [ "fileId" ],
+           "sort": [
+               {"fileId": "asc"}
+           ]
+        }

@@ -1,0 +1,7 @@
+{
+  "query": {
+    "term": {
+      "source.type": "cytometer"
+    }
+  }
+}

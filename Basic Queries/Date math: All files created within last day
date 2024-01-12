@@ -1,0 +1,9 @@
+{
+  "query": {
+    "range": {
+      "createdAt": {
+        "gt": "now-1d/d"
+      }
+    }
+  }
+}

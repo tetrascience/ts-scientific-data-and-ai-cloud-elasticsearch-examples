@@ -1,0 +1,21 @@
+sql:
+SELECT name, email 
+FROM customers 
+WHERE id = 3
+
+elasticsearch:
+{
+  "query": {
+    "term": {
+      "id": {
+        "value": 3
+      }
+    }
+  },
+  "_source": {
+    "includes": [
+      "name",
+      "email"
+    ]
+  }
+}

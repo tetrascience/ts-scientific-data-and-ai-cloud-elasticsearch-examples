@@ -1,0 +1,12 @@
+{
+  "query": {
+    "nested": {
+      "path": "data.runs",
+      "query": {
+        "term": {
+          "data.runs.experiment.name": "COVID19 ST3 230420"
+        }
+      }
+    }
+  }
+}

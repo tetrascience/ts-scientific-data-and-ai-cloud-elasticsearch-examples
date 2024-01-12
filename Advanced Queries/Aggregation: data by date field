@@ -1,0 +1,11 @@
+{
+  "size": 0,
+  "aggs": {
+    "new_files_per_week": {
+      "date_histogram": {
+        "field": "createdAt",
+        "interval": "week"
+      }
+    }
+  }
+}

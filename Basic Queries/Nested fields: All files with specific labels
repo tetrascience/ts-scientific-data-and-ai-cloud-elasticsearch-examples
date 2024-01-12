@@ -1,0 +1,23 @@
+{
+  "query": {
+    "nested": {
+      "path": "labels",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "term": {
+                "labels.name": "condition"
+              }
+            },
+            {
+              "term": {
+                "labels.value": "ICU"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}
