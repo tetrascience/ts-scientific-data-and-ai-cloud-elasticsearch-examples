@@ -1,0 +1,49 @@
+{ 
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "nested": {
+            "path": "labels",
+            "query": {
+              "bool": {
+                "must": [
+                  {
+                    "term": {
+                      "labels.name": "condition"
+                    }
+                  },
+                  {
+                    "term": {
+                      "labels.value": "ICU"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "term": {
+            "source.type": "cytometer"
+          }
+        },
+        {
+          "term": {
+            "category": "IDS"
+          }
+        }
+      ],
+      "must_not": {
+        "nested": {
+          "path": "data.runs",
+          "query": {
+            "term": {
+              "data.runs.experiment.name": "COVID19 ST3 210420"
+            }
+          }
+        }
+      }
+    }
+  }
+}
