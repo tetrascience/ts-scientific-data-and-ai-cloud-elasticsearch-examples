@@ -1,0 +1,50 @@
+{
+  "query": {
+    "bool": {
+      "should": [
+          {
+            "nested": {
+                "path": "labels",
+                "query": {
+                    "bool": {
+                        "must": [
+                            {
+                                "term": {
+                                    "labels.name": "condition"
+                                }
+                            },
+                            {
+                                "term": {
+                                    "labels.value": "ICU"
+                                }              
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "nested": {
+                "path": "labels",
+                "query": {
+                    "bool": {
+                        "must": [
+                            {
+                                "term": {
+                                    "labels.name": "condition"
+                                }
+                            },
+                            {
+                                "term": {
+                                    "labels.value": "Ward"
+                                }              
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+        ]
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+    "_source": [
+        "labels"
+    ],
+    "query": {
+        "bool": {
+            "must": [
+                {
+                    "term": {
+                        "category": "IDS"
+                    }
+                },
+                {
+                    "term": {
+                        "tags": "example-cytometry"
+                    }
+                }
+            ],
+            "must_not": [
+                {
+                    "nested": {
+                        "path": "labels",
+                        "query": {
+                            "bool": {
+                                "must": [
+                                    {
+                                        "term": {
+                                            "labels.value": "condition"
+                                        }
+                                    },
+                                    {
+                                        "term": {
+                                            "labels.name": "Healthy"
+                                        }              
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

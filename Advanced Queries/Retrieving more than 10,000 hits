@@ -1,0 +1,42 @@
+import json
+import requests
+
+# Grab information from the authentication file (here named cfg.json)
+with open ("cfg.json", "r") as cfg_file:
+    cfg = json.load(cfg_file)
+    token = cfg["auth_token"]
+    org_slug = cfg["org"]
+    api_base = cfg["api_url"]
+
+headers = {
+    "ts-auth-token": token,
+    "x-org-slug": org_slug
+}
+
+eql_url = api_base + "/datalake/searchEql"
+
+query = {
+  "size": 5000,
+  "query": {
+    "range": {
+      "createdAt": {
+        "lt": "now-1d/d"
+      }
+    }
+  },
+  "sort": [
+    {
+      "_id": "asc"
+    }
+  ]
+}
+
+result = requests.post(url=eql_url, json=query, headers=headers).json()
+all_hits = result["hits"]["hits"]
+total_hits = result["hits"]["total"]
+
+while len(all_hits) < total_hits:
+    search_start = result["hits"]["hits"][-1]["sort"]
+    result["search_after"] = search_start
+    result = requests.post(url=eql_url, json=query, headers=headers).json()
+    all_hits.extend(result["hits"]["hits"])
